@@ -108,4 +108,17 @@ public class Recette {
     public void setPartage(Boolean partage) {
         this.partage = partage;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", contenu='" + contenu + '\'' +
+                ", image_lien=" + image_lien +
+                ", visible=" + visible +
+                ", partage='" + partage + '\'' +
+                ", fid='" + fid + '\'' +
+                '}';
+    }
 }

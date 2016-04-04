@@ -5,6 +5,7 @@ import com.example.Recette.RecetteDao;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.internal.matchers.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -29,7 +30,8 @@ public class RecetteTest {
     @Test
     public void should_add_recette(){
         long id=2;
-        Recette recette = new Recette("chocolate cake","content of the chocolate","imageChocolate.jpg",true,false,id);
+        Recette recette = new Recette("cake","content of the chocolate","imageChocolate.jpg",true,false,id);
+        Assert.assertNotNull("can't be null",recette.getTitle());
         Assert.assertNotNull("can't be null ",recetteDao.save(recette));
 
     }
