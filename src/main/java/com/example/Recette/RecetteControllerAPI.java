@@ -58,7 +58,17 @@ public class RecetteControllerAPI {
             return new ResponseEntity<String>("The recette value is null",HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        return new ResponseEntity<String>("Your update is perfect : Your user are modified",HttpStatus.OK);
+        Recette recet = recetteDao.findByTitle(recette.getTitle());
+        if(recet==null){
+            return new ResponseEntity<String>("You can't update your recette",HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        recette.setId(recet.getId());
+        if(recetteDao.save(recette)==null){
+            return new ResponseEntity<String>("The update is not good",HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ResponseEntity<String>("Your update is perfect : Your recette are modified",HttpStatus.OK);
     }
 
     @RequestMapping(
@@ -68,7 +78,7 @@ public class RecetteControllerAPI {
             produces=MediaType.APPLICATION_JSON_VALUE
     )
 
-    public ResponseEntity<String> deleteUser(@RequestBody RecetteDelete recetteDelete)
+    public ResponseEntity<String> deleteRecette(@RequestBody RecetteDelete recetteDelete)
     {
 
         return  null;

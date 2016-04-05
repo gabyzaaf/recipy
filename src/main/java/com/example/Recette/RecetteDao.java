@@ -12,7 +12,7 @@ import java.util.List;
  * Created by zaafranigabriel on 22/03/2016.
  */
 public interface RecetteDao extends CrudRepository<Recette,Long> {
-    public LinkedList<Recette> findByFid(Long id);
+    public LinkedList<Recette> findByTitleAndId(String title, long id);
     public Recette save(Recette recette);
     @Query("SELECT count(r) FROM Recette r where title=:title")
     public int countTitle(@Param("title") String title);
