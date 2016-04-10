@@ -46,7 +46,7 @@ public class RecetteControllerAPI {
 
 
     @RequestMapping(
-            value="/api/user/update",
+            value="/api/recette/update",
             method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces=MediaType.APPLICATION_JSON_VALUE
@@ -78,11 +78,20 @@ public class RecetteControllerAPI {
             produces=MediaType.APPLICATION_JSON_VALUE
     )
 
-    public ResponseEntity<String> deleteRecette(@RequestBody RecetteDelete recetteDelete)
+    public ResponseEntity<String> deleteRecette(@RequestBody RecetteDelete RecetteDelete)
     {
 
-        return  null;
+
+        if(RecetteDelete==null){
+            return new ResponseEntity<String>("Your value is empty",HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        Recette recette = recetteDao.findByTitle(RecetteDelete.getRecetteToDelete().getTitle());
+        recetteDao.delete(recette);
+        return new ResponseEntity<String>("The recipy is deleted",HttpStatus.OK);
+
     }
+
 
 
 }
