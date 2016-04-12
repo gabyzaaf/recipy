@@ -1,0 +1,19 @@
+<html>
+
+<head>
+
+</head>
+<body>
+    <h1>Formulaire de connexion</h1>
+    <form action="#" th:action="@{/api/user/connection}" th:object="${Authentification}" method="POST">
+        <label>Login : </label>
+        <input type="text" th:field="*{logins}"/>
+        <br>
+        <label>Pwd : </label>
+        <input type="password" th:field="*{pwd}"/>
+        <br>
+        <input type="submit" value="connexion" />
+        <input type="reset" value="reset"/>
+    </form>
+</body>
+</html>
